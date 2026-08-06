@@ -31,8 +31,6 @@ def _extract_text(frame: dict[str, Any]) -> str:
         for key in ("text", "content", "delta"):
             value = node.get(key)
             if isinstance(value, str) and value.strip():
-                if key != "delta":
-                    value += "\n"
                 return value
     body = frame.get("body")
     if isinstance(body, str):
