@@ -31,7 +31,7 @@ dependencies = [
     "pip",
     "fastmcp>=2,<3",
     "career-emulator[bdci]>=0.2.7",
-    "jiuwenswarm",
+    "jiuwenswarm==0.2.4.beta3",
     "rich>=13",
     "pyyaml",
 ]
@@ -69,10 +69,10 @@ default-groups = ['dev']
 career_emulator = ["py.typed", "career_emulator/data/.gitkeep"]
 career_sim_runner = ["prompts/*.md"]
 
-[tool.uv.sources.jiuwenswarm]
-git = "https://gitcode.com/openJiuwen/jiuwenswarm"
-rev = "13735a1ba5dd74bb88d60095a033b60dca2bfffd"
-lfs = false
+# [tool.uv.sources.jiuwenswarm]
+# git = "https://gitcode.com/openJiuwen/jiuwenswarm"
+# rev = "13735a1ba5dd74bb88d60095a033b60dca2bfffd"
+# lfs = false
 
 [tool.pytest.ini_options]
 asyncio_default_fixture_loop_scope = "function"
