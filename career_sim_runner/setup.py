@@ -62,7 +62,7 @@ def ensure_instance_configured() -> Path:
             "enabled": True,
             "transport": "stdio",
             "command": "career-emulator-mcp",
-            "args": ["--update", "distribution", "-c"],
+            "args": ["--update", "skip", "-c"],
             "cwd": cwd,
             "env": {
                 "CAREER_EMULATOR_DB": str(default_db_path()),

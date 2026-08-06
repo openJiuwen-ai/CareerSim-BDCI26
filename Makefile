@@ -14,6 +14,7 @@ setup:
 # Play a game with current solution
 play:
 	@uv run python -m pip install -U career-emulator-bdci26
+	@uv run career-emulator update --source distribution
 	uv run python -m career_sim_runner play --submission solution
 
 # Check last run's score
