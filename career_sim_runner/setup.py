@@ -1,5 +1,6 @@
 """Environment setup helpers for the standalone participant runner."""
 
+import re
 import shutil
 import subprocess
 from functools import lru_cache
@@ -24,6 +25,8 @@ from career_sim_runner.paths import (
     jiuwenswarm_env_path,
     repo_root,
 )
+
+WINDOWS_BINARY_EXT = re.compile(r"\.(bat|ps1|exe)$", flags=re.IGNORECASE)
 
 
 def ensure_instance_initialized() -> Path:
@@ -59,7 +62,7 @@ def ensure_instance_configured() -> Path:
             "enabled": True,
             "transport": "stdio",
             "command": "career-emulator-mcp",
-            "args": ["--update", "skip", "-c"],
+            "args": ["--update", "distribution", "-c"],
             "cwd": cwd,
             "env": {
                 "CAREER_EMULATOR_DB": str(default_db_path()),
@@ -143,9 +146,12 @@ def setup_summary() -> dict[str, str]:
 def tool_availability() -> dict[str, bool | str]:
     """Return whether key local commands are available."""
     jiuwenswarm_path = shutil.which("jiuwenswarm-start")
-    cwd = (jiuwenswarm_path or "").removesuffix("jiuwenswarm-start")
+    if isinstance(jiuwenswarm_path, str):
+        cwd = WINDOWS_BINARY_EXT.sub("", jiuwenswarm_path, count=1).removesuffix("jiuwenswarm-start")
+    else:
+        cwd = ""
     return {
-        "career-emulator-mcp": Path(cwd, "career-emulator-mcp").exists() and Path(cwd, "fastmcp").exists(),
+        "career-emulator-mcp": bool(list(Path(cwd).glob("career-emulator-mcp*")) and list(Path(cwd).glob("fastmcp*"))),
         "jiuwenswarm-start": jiuwenswarm_path is not None,
         "path": cwd,
     }
