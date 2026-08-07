@@ -9,7 +9,7 @@ from career_sim_runner.skill_contract import SubmissionError
 from career_sim_runner.ws_client import _build_envelope, build_play_prompt, resolve_run_mode
 
 
-def _install_record(*, mode: str = "agent.plan", instruction: str = "") -> InstallRecord:
+def _install_record(*, mode: str = "agent", instruction: str = "") -> InstallRecord:
     """Return an install record fixture for websocket tests."""
     return InstallRecord(
         submission_dir="/tmp/submission",
@@ -44,5 +44,5 @@ def test_resolve_run_mode_rejects_unsupported() -> None:
 
 def test_build_envelope_uses_selected_mode() -> None:
     """Envelope generation should send the resolved JiuwenSwarm mode."""
-    envelope = _build_envelope("prompt", "drive-session", "agent.plan")
-    assert envelope["params"]["mode"] == "agent.plan"
+    envelope = _build_envelope("prompt", "drive-session", "agent")
+    assert envelope["params"]["mode"] == "agent"

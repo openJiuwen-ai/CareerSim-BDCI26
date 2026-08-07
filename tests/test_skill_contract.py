@@ -31,7 +31,7 @@ def test_validate_submission_contract_fixture() -> None:
 
 def test_validate_manifest_valid() -> None:
     """A well-formed manifest should produce no errors."""
-    errors = validate_manifest({"team": "my-team", "mode": "agent.plan"})
+    errors = validate_manifest({"team": "my-team", "mode": "agent"})
     assert errors == []
 
 
@@ -46,7 +46,7 @@ def test_validate_manifest_valid() -> None:
 )
 def test_validate_manifest_rejects_placeholder_team(team: str) -> None:
     """Placeholder team names must be flagged."""
-    errors = validate_manifest({"team": team, "mode": "agent.plan"})
+    errors = validate_manifest({"team": team, "mode": "agent"})
     assert any("team" in e for e in errors), f"expected team error for {team!r}, got {errors}"
 
 
@@ -62,7 +62,7 @@ def test_validate_manifest_multiple_errors() -> None:
     assert len(errors) == 2
 
 
-@pytest.mark.parametrize("mode", ["agent.plan", "agent.fast", "team"])
+@pytest.mark.parametrize("mode", ["agent", "team"])
 def test_validate_manifest_all_supported_modes(mode: str) -> None:
     """Every documented mode should pass validation."""
     errors = validate_manifest({"team": "my-team", "mode": mode})

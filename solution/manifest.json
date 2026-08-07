@@ -1,6 +1,6 @@
 {
   "team": "enter your team name here",
   "name": "dummy-solution",
-  "mode": "agent.plan",
+  "mode": "agent",
   "instruction": "Use my skills, they are awesome"
 }
