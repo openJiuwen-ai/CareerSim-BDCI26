@@ -152,7 +152,12 @@ def _build_envelope(prompt: str, session_id: str, mode: str) -> dict[str, Any]:
         "session_id": session_id,
         "channel": "web",
         "method": "chat.send",
-        "params": {"content": prompt, "query": prompt, "mode": mode},
+        "params": {
+            "content": prompt,
+            "query": prompt,
+            "mode": mode,
+            "work_mode": "work",  # Omitting this may activate legacy code in JiuwenSwarm in rare cases
+        },
         "is_stream": True,
     }
 

@@ -46,3 +46,4 @@ def test_build_envelope_uses_selected_mode() -> None:
     """Envelope generation should send the resolved JiuwenSwarm mode."""
     envelope = _build_envelope("prompt", "drive-session", "agent")
     assert envelope["params"]["mode"] == "agent"
+    assert envelope["params"]["work_mode"] == "work"
