@@ -12,8 +12,6 @@ from career_sim_runner.constants import (
     CAREER_EMULATOR_ACTIVE_LONG_CHAIN_LIMIT,
     CAREER_EMULATOR_MAX_NOTE_LENGTH,
     CAREER_EMULATOR_MONTHLY_EVENT_LIMIT,
-    RUNNER_CONFIG_TEMPLATE,
-    RUNNER_ENV_TEMPLATE,
 )
 from career_sim_runner.paths import (
     default_db_path,
@@ -135,10 +133,7 @@ def setup_summary() -> dict[str, str]:
         "jiuwenswarm_config_path": str(jiuwenswarm_config_path()),
         "jiuwenswarm_env_path": str(jiuwenswarm_env_path()),
         "repo_env_overlay_path": str(repo_root() / ".env"),
-        "repo_env_example_path": str(repo_root() / ".env.example"),
         "recommended_db_path": str(default_db_path()),
-        "config_template": RUNNER_CONFIG_TEMPLATE,
-        "env_template": RUNNER_ENV_TEMPLATE,
     }
 
 
